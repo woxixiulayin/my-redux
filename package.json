@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "test": "jest",
+    "test-w": "jest --watchAll"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "jsx"
+    ],
+    "globals": {
+      "__DEV__": true,
+      "__JEST__": true,
+      "__LOCAL_VERSION__": false
+    },
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "/.yarn/",
+      "helper/"
+    ]
+  },
+  "dependencies": {
+    "babel-jest": "^23.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "jest": "^23.0.0"
+  }
+}
