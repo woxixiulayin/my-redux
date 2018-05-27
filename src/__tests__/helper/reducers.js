@@ -24,5 +24,7 @@ export const todos = (state = initState, action) => {
         const newState = {...state}
         newState[id(state)] = action.payload.text
     }
+    default:
+        return state
     }
 }
