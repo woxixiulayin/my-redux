@@ -12,7 +12,11 @@ import { ADD_TODO } from './actionTypes'
 const id = state => Object.values(state).reduce((result, item) => item.id > result ? item.id : result) + 1
 
 
-export const initState = {}
+export const initState = {
+    1: {
+        test: 'first todo'
+    }
+}
 
 export const todos = (state = initState, action) => {
     switch(action.type) {

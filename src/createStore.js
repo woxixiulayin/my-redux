@@ -7,7 +7,7 @@ const ActionType = {
 const createStore = (reducer, initState) => {
 
     const listeners = []
-    let currentState = {}
+    let currentState = initState
 
     if (typeof reducer !== 'function') {
         throw new TypeError('reducers should be an function')
@@ -40,6 +40,8 @@ const createStore = (reducer, initState) => {
         const newState = reducer(currentState, action)
 
         currentState = newState
+
+        listeners.forEach(listener => listener())
     }
 
     return {
