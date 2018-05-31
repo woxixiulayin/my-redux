@@ -1,5 +1,7 @@
 {
+  "main": "./dist/my-redux.js",
   "scripts": {
+    "build": "rollup src/index.js --format cjs --file dist/my-redux.js",
     "test": "jest",
     "test-w": "jest --watchAll"
   },

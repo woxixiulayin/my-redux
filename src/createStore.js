@@ -4,7 +4,7 @@ const ActionType = {
     INIT: 'INIT_ACTION'
 }
 
-const createStore = (reducer, initState) => {
+const createStore = (reducer, initState = {}) => {
 
     const listeners = []
     let currentState = initState
@@ -14,9 +14,9 @@ const createStore = (reducer, initState) => {
         throw new TypeError('reducers should be an function')
     }
     
-    if (!isPlainObject(initState)) {
-        throw new TypeError('initState should be a plain object')
-    }
+    // if (!isPlainObject(initState)) {
+    //     throw new TypeError('initState should be a plain object')
+    // }
     
     const subscribe = listener => {
         if (typeof listener !== 'function') {
@@ -50,7 +50,7 @@ const createStore = (reducer, initState) => {
 
         currentState = newState
 
-        listeners.forEach(listener => listener())
+        listeners.forEach(listener => listener(currentState))
 
         isDispatching = false
     }
