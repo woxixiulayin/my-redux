@@ -1,6 +1,6 @@
 import createStore from '../createStore'
-import { todos, initTodos } from '../helper/reducers'
-import { ADD_TODO, actionAdd } from '../helper/actionTypes'
+import { todos, initTodos } from '../test-helper/reducers'
+import { ADD_TODO, actionAdd } from '../test-helper/actionTypes'
 
 describe('test createStore', () => {
 

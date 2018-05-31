@@ -1,5 +1,5 @@
-import { todos, todoByIds, initTodos, initTodoByIds } from '../../helper/reducers'
-import { actionAdd } from '../../helper/actionTypes'
+import { todos, todoByIds, initTodos, initTodoByIds } from '../../test-helper/reducers'
+import { actionAdd } from '../../test-helper/actionTypes'
 import combineReducers from '../combineReducers'
 
 describe('test combineReducers', () => {
