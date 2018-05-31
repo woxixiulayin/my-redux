@@ -31,7 +31,7 @@ export const todos = (state = initTodos, action) => {
     }
 }
 
-export const todoByIds = (state = initTodos, action) => {
+export const todoByIds = (state = initTodoByIds, action) => {
     switch(action.type) {
     case ADD_TODO:
         return [...state, id(state)]

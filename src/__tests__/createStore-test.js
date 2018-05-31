@@ -1,24 +1,26 @@
 import createStore from '../createStore'
-import { todos, initState } from './helper/reducers'
-import { ADD_TODO, actionAdd } from './helper/actionTypes'
+import { todos, initTodos } from '../helper/reducers'
+import { ADD_TODO, actionAdd } from '../helper/actionTypes'
 
 describe('test createStore', () => {
 
     let store, listener
 
     beforeEach(() => {
-        store = createStore(todos, initState)
+        store = createStore(todos, initTodos)
         listener = jest.fn()
     })
 
     it('should contain api', () => {
-        expect(store.subscribe).toBeTruthy()
-        expect(store.dispatch).toBeTruthy()
-        expect(store.getState).toBeTruthy()
+        const methods = Object.keys(store)
+
+        expect(methods).toContain('subscribe')
+        expect(methods).toContain('dispatch')
+        expect(methods).toContain('getState')
     })
 
     it('test getState', () => {
-        expect(JSON.stringify(store.getState())).toBe(JSON.stringify(initState))
+        expect(JSON.stringify(store.getState())).toBe(JSON.stringify(initTodos))
     })
 
     it('test dispatch', () => {
@@ -29,17 +31,17 @@ describe('test createStore', () => {
             }
         })
 
-        const store = createStore(reducer, initState)
+        const store = createStore(reducer, initTodos)
 
         // 初始化时调用一次
         expect(reducer.mock.calls.length).toBe(1)
-        expect(reducer.mock.calls[0][0]).toBe(initState)
+        expect(reducer.mock.calls[0][0]).toBe(initTodos)
         
         store.dispatch(actionAdd)
         
         const newState = store.getState()
         
-        expect(newState !== initState).toBeTruthy()
+        expect(newState !== initTodos).toBeTruthy()
         expect(reducer.mock.calls[1][1]).toBe(actionAdd)
 
     })
