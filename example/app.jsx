@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 
+import './style.css'
+
 class Todo extends Component {
 
     static propTypes = {
@@ -33,7 +35,7 @@ class Todo extends Component {
         const { id = 0, todo = ''} = todoData
     
         return <div className="todo-item">
-        <span className="item-index">{id}</span>
+        <span className="item-index">{`${id}: `}</span>
         <span className="item-content">{todo}</span>
         </div>
     }
@@ -77,6 +79,9 @@ class TodoInput extends Component {
 
     constructor() {
         super()
+        this.state = {
+            value: ''
+        }
     }
 
     onKeyDown = e => {
@@ -87,7 +92,9 @@ class TodoInput extends Component {
             if (ctrlKey) {
                 this.text.value += '\r'
             } else {
-                store.dispatch(actions.todo_add(this.text.value))
+                const { value } = this.state
+                store.dispatch(actions.todo_add(value))
+                this.text.value = ''
             }
         }
     }

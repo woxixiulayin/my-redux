@@ -1,0 +1,45 @@
+#app {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 700px;
+    height: 500px;
+    padding: 16px;
+    background: #ccc;
+}
+
+#todo {
+    width: 500px;
+}
+#todo-input input {
+    width: 100%;
+    line-height: 20px;
+    font-size: 20px;
+}
+
+#todo-list {
+    width: 500px;
+    height: 400px;
+    overflow: hidden;
+}
+.todo-item {
+    border: 1px solid #666;
+    font-size: 16px;
+    margin: 8px;
+    line-height: 13px;
+}
+
+.todo-item .item-index {
+    color: black;
+}
+
+.todo-item .item-content {
+    color: #444;
+}
