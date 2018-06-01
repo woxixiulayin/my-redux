@@ -20431,7 +20431,7 @@ module.exports = reloadCSS;
 'use strict';
 
 var _jsxFileName = '/Users/Jackson/work/lunzi/redux/my-redux/example/app.jsx',
-    _this8 = undefined;
+    _this6 = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -20467,6 +20467,11 @@ var Todo = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).call(this));
 
+        _this.mapReduxState = function (state) {
+            var todoData = state.byId[_this.props.id || 0] || {};
+            _this.setState({ todoData: todoData });
+        };
+
         _this.state = {
             todoData: {}
         };
@@ -20477,12 +20482,8 @@ var Todo = function (_Component) {
     _createClass(Todo, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this2 = this;
-
-            this.unsubscribe = _store.store.subscribe(function (state) {
-                var todoData = state.byId[_this2.props.id || 0] || {};
-                _this2.setState({ todoData: todoData });
-            });
+            this.mapReduxState(_store.store.getState());
+            this.unsubscribe = _store.store.subscribe(this.mapReduxState);
         }
     }, {
         key: 'componentWillUnmount',
@@ -20504,7 +20505,7 @@ var Todo = function (_Component) {
                 'div',
                 { className: 'todo-item', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 37
+                        lineNumber: 40
                     },
                     __self: this
                 },
@@ -20512,7 +20513,7 @@ var Todo = function (_Component) {
                     'span',
                     { className: 'item-index', __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 38
+                            lineNumber: 41
                         },
                         __self: this
                     },
@@ -20522,7 +20523,7 @@ var Todo = function (_Component) {
                     'span',
                     { className: 'item-content', __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 39
+                            lineNumber: 42
                         },
                         __self: this
                     },
@@ -20545,25 +20546,25 @@ var TodoList = function (_Component2) {
     function TodoList() {
         _classCallCheck(this, TodoList);
 
-        var _this3 = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this));
+        var _this2 = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this));
 
-        _this3.state = {
+        _this2.mapReduxState = function (state) {
+            var ids = state.ids || [];
+            _this2.setState({ ids: ids });
+        };
+
+        _this2.state = {
             ids: []
         };
-        _this3.unsubscribe = null;
-        return _this3;
+        _this2.unsubscribe = null;
+        return _this2;
     }
 
     _createClass(TodoList, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this4 = this;
-
-            this.unsubscribe = _store.store.subscribe(function (state) {
-                console.log('state is', state);
-                var ids = state.ids || [];
-                _this4.setState({ ids: ids });
-            });
+            this.mapReduxState(_store.store.getState());
+            this.unsubscribe = _store.store.subscribe(this.mapReduxState);
         }
     }, {
         key: 'componentWillUnmount',
@@ -20573,7 +20574,7 @@ var TodoList = function (_Component2) {
     }, {
         key: 'render',
         value: function render() {
-            var _this5 = this;
+            var _this3 = this;
 
             var _state$ids = this.state.ids,
                 ids = _state$ids === undefined ? [] : _state$ids;
@@ -20585,16 +20586,16 @@ var TodoList = function (_Component2) {
                     id: 'todo-list',
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 69
+                        lineNumber: 74
                     },
                     __self: this
                 },
                 ids.map(function (id) {
                     return _react2.default.createElement(Todo, { id: id, key: id, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 72
+                            lineNumber: 77
                         },
-                        __self: _this5
+                        __self: _this3
                     });
                 })
             );
@@ -20610,34 +20611,34 @@ var TodoInput = function (_Component3) {
     function TodoInput() {
         _classCallCheck(this, TodoInput);
 
-        var _this6 = _possibleConstructorReturn(this, (TodoInput.__proto__ || Object.getPrototypeOf(TodoInput)).call(this));
+        var _this4 = _possibleConstructorReturn(this, (TodoInput.__proto__ || Object.getPrototypeOf(TodoInput)).call(this));
 
-        _this6.onKeyDown = function (e) {
+        _this4.onKeyDown = function (e) {
             var keyCode = e.keyCode || e.which || e.charCode;
             var ctrlKey = e.ctrlKey || e.metaKey;
             if (keyCode === 13) {
                 e.preventDefault();
                 if (ctrlKey) {
-                    _this6.text.value += '\r';
+                    _this4.text.value += '\r';
                 } else {
-                    var value = _this6.state.value;
+                    var value = _this4.state.value;
 
                     _store.store.dispatch(_store.actions.todo_add(value));
-                    _this6.text.value = '';
+                    _this4.text.value = '';
                 }
             }
         };
 
-        _this6.state = {
+        _this4.state = {
             value: ''
         };
-        return _this6;
+        return _this4;
     }
 
     _createClass(TodoInput, [{
         key: 'render',
         value: function render() {
-            var _this7 = this;
+            var _this5 = this;
 
             return _react2.default.createElement(
                 'div',
@@ -20645,22 +20646,22 @@ var TodoInput = function (_Component3) {
                     id: 'todo-input',
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 104
+                        lineNumber: 109
                     },
                     __self: this
                 },
                 _react2.default.createElement('input', {
                     onKeyDown: this.onKeyDown,
                     ref: function ref(node) {
-                        return _this7.text = node;
+                        return _this5.text = node;
                     },
                     onChange: function onChange(e) {
-                        return _this7.setState({ value: _this7.text.value });
+                        return _this5.setState({ value: _this5.text.value });
                     },
                     type: 'text',
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 107
+                        lineNumber: 112
                     },
                     __self: this
                 })
@@ -20676,23 +20677,23 @@ var App = function App() {
         'div',
         { className: 'main-content', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 118
+                lineNumber: 123
             },
-            __self: _this8
+            __self: _this6
         },
         _react2.default.createElement(TodoInput, {
             __source: {
                 fileName: _jsxFileName,
-                lineNumber: 119
+                lineNumber: 124
             },
-            __self: _this8
+            __self: _this6
         }),
         _react2.default.createElement(TodoList, {
             __source: {
                 fileName: _jsxFileName,
-                lineNumber: 120
+                lineNumber: 125
             },
-            __self: _this8
+            __self: _this6
         })
     );
 };
@@ -20700,7 +20701,7 @@ var App = function App() {
 _reactDom2.default.render(_react2.default.createElement(App, {
     __source: {
         fileName: _jsxFileName,
-        lineNumber: 124
+        lineNumber: 129
     },
     __self: undefined
 }), document.querySelector('#app'));

@@ -30,8 +30,7 @@
     overflow: hidden;
 }
 .todo-item {
-    border: 1px solid #666;
-    font-size: 16px;
+    font-size: 20px;
     margin: 8px;
     line-height: 13px;
 }

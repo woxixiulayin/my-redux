@@ -20,10 +20,13 @@ class Todo extends Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = store.subscribe(state => {
-            const todoData = state.byId[this.props.id || 0] || {}
+        this.mapReduxState(store.getState())
+        this.unsubscribe = store.subscribe(this.mapReduxState)
+    }
+
+    mapReduxState = state => {
+        const todoData = state.byId[this.props.id || 0] || {}
             this.setState({ todoData })
-        })
     }
 
     componentWillUnmount() {
@@ -51,11 +54,13 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = store.subscribe(state => {
-            console.log('state is', state)
-            const ids = state.ids || []
-            this.setState({ ids })
-        })
+        this.mapReduxState(store.getState())
+        this.unsubscribe = store.subscribe(this.mapReduxState)
+    }
+
+    mapReduxState = state => {
+        const ids = state.ids || []
+        this.setState({ ids })
     }
 
     componentWillUnmount() {
