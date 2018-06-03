@@ -49,6 +49,11 @@ h1 {
     height: 400px;
     overflow: auto;
 }
+
+.todo-len {
+    font-size: 18px;
+}
+
 .todo-item {
     font-size: 24px;
     margin: 16px 0;

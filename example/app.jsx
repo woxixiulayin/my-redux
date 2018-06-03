@@ -74,6 +74,7 @@ class TodoList extends Component {
             <div
               id="todo-list"
             >
+                <div className="todo-len">total todos: {ids.length}</div>
                 {ids.map((id) => <Todo id={id} key={id} />)}
             </div>
         )

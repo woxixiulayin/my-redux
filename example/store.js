@@ -60,6 +60,8 @@ const store = createStore(todoReducer, {})
 
 window.store = store
 
+store.subscribe(state => console.log('state is', state))
+
 export {
     actions,
     store

@@ -328,6 +328,10 @@ var store = (0, _myRedux.createStore)(todoReducer, {});
 
 window.store = store;
 
+store.subscribe(function (state) {
+    return console.log('state is', state);
+});
+
 exports.actions = actions;
 exports.store = store;
 },{"../dist/my-redux":12}],16:[function(require,module,exports) {
@@ -20590,10 +20594,21 @@ var TodoList = function (_Component2) {
                     },
                     __self: this
                 },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'todo-len', __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 77
+                        },
+                        __self: this
+                    },
+                    'total todos: ',
+                    ids.length
+                ),
                 ids.map(function (id) {
                     return _react2.default.createElement(Todo, { id: id, key: id, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 77
+                            lineNumber: 78
                         },
                         __self: _this3
                     });
@@ -20646,7 +20661,7 @@ var TodoInput = function (_Component3) {
                     id: 'todo-input',
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 109
+                        lineNumber: 110
                     },
                     __self: this
                 },
@@ -20661,7 +20676,7 @@ var TodoInput = function (_Component3) {
                     type: 'text',
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 112
+                        lineNumber: 113
                     },
                     __self: this
                 })
@@ -20677,7 +20692,7 @@ var App = function App() {
         'div',
         { className: 'main-content', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 123
+                lineNumber: 124
             },
             __self: _this6
         },
@@ -20686,7 +20701,7 @@ var App = function App() {
             {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 124
+                    lineNumber: 125
                 },
                 __self: _this6
             },
@@ -20695,14 +20710,14 @@ var App = function App() {
         _react2.default.createElement(TodoInput, {
             __source: {
                 fileName: _jsxFileName,
-                lineNumber: 125
+                lineNumber: 126
             },
             __self: _this6
         }),
         _react2.default.createElement(TodoList, {
             __source: {
                 fileName: _jsxFileName,
-                lineNumber: 126
+                lineNumber: 127
             },
             __self: _this6
         })
@@ -20712,11 +20727,11 @@ var App = function App() {
 _reactDom2.default.render(_react2.default.createElement(App, {
     __source: {
         fileName: _jsxFileName,
-        lineNumber: 130
+        lineNumber: 131
     },
     __self: undefined
 }), document.querySelector('#app'));
-},{"./store":4,"react":6,"prop-types":5,"react-dom":7,"./style.css":3}],31:[function(require,module,exports) {
+},{"./store":4,"react":6,"prop-types":5,"react-dom":7,"./style.css":3}],36:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -20886,5 +20901,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[31,2], null)
+},{}]},{},[36,2], null)
 //# sourceMappingURL=/app.30b6ce98.map
