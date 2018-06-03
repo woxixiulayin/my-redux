@@ -1,3 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #ccc;
+}
+
+h1 {
+    text-align: center;
+}
+
 #app {
     display: flex;
     justify-content: center;
@@ -18,25 +30,34 @@
 #todo {
     width: 500px;
 }
+
+#todo-input {
+    width: 100%;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 4px  #666;
+}
+
 #todo-input input {
     width: 100%;
-    line-height: 20px;
-    font-size: 20px;
+    line-height: 34px;
+    font-size: 26px;
+    padding: 0 8px;
 }
 
 #todo-list {
     width: 500px;
     height: 400px;
-    overflow: hidden;
+    overflow: auto;
 }
 .todo-item {
-    font-size: 20px;
-    margin: 8px;
+    font-size: 24px;
+    margin: 16px 0;
     line-height: 13px;
 }
 
 .todo-item .item-index {
     color: black;
+    margin-right: 8px;
 }
 
 .todo-item .item-content {

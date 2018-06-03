@@ -121,6 +121,7 @@ class TodoInput extends Component {
 }
 
 const App = () => <div className="main-content">
+    <h1>TODO</h1>
     <TodoInput />
     <TodoList />
 </div>
